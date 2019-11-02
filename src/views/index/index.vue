@@ -1,10 +1,10 @@
 <template>
 	<div id="index">
     <router-view></router-view>
-		<ul>
+		<ul class='tab'>
 			<router-link v-for='item,index in routerList' :key='index' tag='li' :to='item.path'>
         <img :src="item.sele?item.src2:item.src" alt="" @click='tab(index)'>
-        {{item.txt}}
+        <p>{{item.txt}}</p>
       </router-link>
 		</ul>
 	</div>
@@ -12,10 +12,13 @@
 <script>
 	export default{
     mounted(){
-      this.routerList[0].sele = true;
+      for(let i = 0;i<4;i++){
+        this.getImg(i);
+      }
     },
     data(){
       return{
+        aIndex: 0,
         routerList: [
           {
             path: '/home',
@@ -50,10 +53,20 @@
     },
     methods: {
       tab(index){
-        for(let i = 0;i< this.routerList.length;i++){
-          this.routerList[i].sele = false;
-        }
-        this.routerList[index].sele = true;
+        this.getImg(this.aIndex);
+        this.aIndex = index;
+        this.getImg(index)
+      },
+      getImg(index){
+        setTimeout(() => {
+          let liList = document.querySelectorAll('#index .tab li');
+          if(liList[index].classList.contains('router-link-active')){
+            this.routerList[index].sele = true;
+            this.aIndex = index;
+          }else{
+            this.routerList[index].sele = false;
+          }
+        },100)
       }
     }
 	}
@@ -62,16 +75,21 @@
 	ul{
     display: flex;
     width: 100vw;
-    height: 5vh;
+    height: 8vh;
     justify-content: space-around;
     position: fixed;
-    bottom: 25px;
+    bottom: 0px;
+    background: #fff;
     li{
-      text-align: center;
+      width: 50px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 	}
   img{
     width: 10vw;
+    height: 10vw;
     display: block;
   }
 </style>
