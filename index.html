@@ -2,8 +2,23 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!-- <meta name="viewport" content="width=device-width,initial-scale=1.0"> -->
     <title>prject</title>
+    <script>
+    	var oMeta = document.createElement('meta');
+		//原型图的宽度
+		var fixedWidth = 375;
+		var deviceWidth = window.screen.width;
+		var scale = deviceWidth/fixedWidth;
+		var attr = {
+			name: 'viewport',
+			content: 'width='+fixedWidth+',initial-scale='+scale+',maximum-scale='+scale+',minimum-scale='+scale+',user-scalable=no'
+		}
+		for(var key in attr){
+			oMeta[key] = attr[key];
+		}
+		document.head.insertBefore(oMeta,document.head.children[1]);
+    </script>
   </head>
   <body>
     <div id="app"></div>

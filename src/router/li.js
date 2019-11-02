@@ -5,7 +5,7 @@ let arr = [
    component: resolve => require(['@/views/index/index'],resolve),
    children: [
      {
-       path: '/home',
+       path: 'home',
        component: resolve => require(['@/views/home/home'],resolve)
      },
      {
@@ -22,5 +22,9 @@ let arr = [
      }
    ]
   },
+   {
+     path: '/course',
+     component: resolve => require(['@/views/course/course'],resolve)
+   }
 ];
 export default arr;
