@@ -16,6 +16,10 @@ let arr = [{
   },{
     path: '/myAddress',
     component: resolve => require(['@/views/my/myAddress'], resolve)
+  },
+  {
+    path:'/addAddress',
+    component:resolve => require(['@/views/my/addAddress'],resolve)
   }
 ];
 export default arr;
