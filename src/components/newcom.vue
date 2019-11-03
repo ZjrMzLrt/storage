@@ -8,7 +8,7 @@
             <div class="wrapper" ref="wrapper">
                 <div class="content">
                     <ul>
-                        <li v-for="(item,index) in newsData" :key="index">
+                        <li v-for="(item,index) in newsData" :key="index" @click="go2NewsDetails(item.id)">
                             <img src="../../static/img/蔚蓝风采首页/3_14.jpg" alt="">
                             <div>
                             <p class="news-content-title">{{item.title}}</p>
@@ -48,57 +48,71 @@ import BScroll from 'better-scroll'
             newsData:{
                 type:Array
             }
+        },
+        methods:{
+            go2NewsDetails(id){
+                this.$router.push({
+                    path:'/newsDetails',
+                    query:{
+                        id
+                    }
+                })
+                // console.log(ind)
+            }
         }
 	}
 </script>
 <style lang='scss'>
-.wrapper{
-    // display: block;
-    height: calc(100vh - 9vh - 334px);
-    overflow: hidden;
-    ul{
-        li{
-            height: 88px;
-            width: 100%;
-            padding: 20px 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid #f6f6f6;
-            img{
-            height: 88px;
-            width: 100px;
-            }
-            div{
-            width: 230px;
-            height: 88px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            .news-content-title{
-                height: 15px;
-                font-size: 15px;
-                color: #6b6b6b;
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
-                -webkit-line-clamp: 1;
-                overflow: hidden;
-            }
-            .news-content-con{
-                font-size: 13px;
-                color: #cbcbcb;
-                line-height: 20px;
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
-                -webkit-line-clamp: 2;
-                overflow: hidden;
-            }
-            .news-content-time{
-                color: #cbcbcb;
-            }
+#new-com{
+    .wrapper{
+        // display: block;
+        height: calc(100vh - 9vh - 334px);
+        overflow: hidden;
+        ul{
+            li{
+                height: 88px;
+                width: 100%;
+                padding: 20px 0;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                border-bottom: 1px solid #f6f6f6;
+                img{
+                    height: 88px;
+                    width: 100px;
+                }
+                div{
+                    width: 230px;
+                    height: 88px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    .news-content-title{
+                        height: 15px;
+                        font-size: 15px;
+                        color: #6b6b6b;
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 1;
+                        overflow: hidden;
+                    }
+                    .news-content-con{
+                        font-size: 13px;
+                        color: #cbcbcb;
+                        line-height: 20px;
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 2;
+                        overflow: hidden;
+                    }
+                    .news-content-time{
+                        color: #cbcbcb;
+                    }
+                }
             }
         }
     }
 }
+
 
 </style>

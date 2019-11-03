@@ -2,22 +2,20 @@
   <div id="style">
     <div class="news-title">蔚蓝风采</div>
     <div class="news-con">
-      <div class="con-top">
-        <img src="../../../static/img/蔚蓝风采首页/3_03.jpg" alt="">
-      </div>
+      <all-header-img />
       <div class="con-center">
         <img src="../../../static/img/蔚蓝风采首页/3_06.jpg" alt="">
       </div>
       <div class="con-bottom">
         <div class="btn-box">
           <mt-navbar v-model="selected">
-            <mt-tab-item v-for="(item,index) in newBtns" :key="index" :id="item.type">
-              <p @click="newsBtn(item.type)">{{item.title}}</p>
+            <mt-tab-item v-for="(item,index) in styleBtns" :key="index" :id="item.type">
+              <p @click="stylesBtn(item.type)">{{item.title}}</p>
             </mt-tab-item>
           </mt-navbar>
           <!-- tab-container -->
           <mt-tab-container v-model="selected">
-            <new-com :newsData="aaa"/>
+            <style-com :styleData="aaa"/>
           </mt-tab-container>
 
 
@@ -29,14 +27,16 @@
 </template>
 
 <script>
-import NewCom from '@/components/newcom'
+import StyleCom from '@/components/stylecom'
+import AllHeaderImg from '@/components/allheaderimg'
 export default {
   components:{
-    NewCom
+    StyleCom,
+    AllHeaderImg
   },
   data(){
     return {
-      newBtns:[
+      styleBtns:[
         {
           type:'1',
           title:'全部'
@@ -46,7 +46,7 @@ export default {
           title:'蔚蓝风采'
         }
       ],
-      news:[
+      styles:[
         {
           type:'2',
           id:1,
@@ -62,16 +62,16 @@ export default {
           time:'2018-09-62 25:20:60'
         },
         {
-          type:'2',
+          type:'4',
           id:3,
-          title:'狗屎瑞大厦X3，哈哈哈哈哈哈哈哈哈哈哈啊哈哈',
+          title:'狗屎瑞大厦X2，哈哈哈哈哈哈哈哈哈哈哈啊哈哈',
           con:'en,你说的对，哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈',
           time:'2018-09-62 25:20:60'
         },
         {
-          type:'3',
+          type:'4',
           id:4,
-          title:'狗屎瑞大厦X4，哈哈哈哈哈哈哈哈哈哈哈啊哈哈',
+          title:'狗屎瑞大厦X2，哈哈哈哈哈哈哈哈哈哈哈啊哈哈',
           con:'en,你说的对，哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈',
           time:'2018-09-62 25:20:60'
         }
@@ -82,20 +82,20 @@ export default {
     }
   },
   mounted(){
-    this.aaa=this.news
+    this.aaa=this.styles
   },
   methods:{
-    newsBtn:function(ind){
+    stylesBtn:function(ind){
       console.log(ind)
       var arr=[]
-      for (let i = 0; i < this.news.length; i++) {
+      for (let i = 0; i < this.styles.length; i++) {
         
-        if (ind==this.news[i].type) {
-          // console.log(this.news[i])
-          arr.push(this.news[i])
+        if (ind==this.styles[i].type) {
+          // console.log(this.styles[i])
+          arr.push(this.styles[i])
         }else if(ind==1){
-          console.log(this.news[i])
-          arr.push(this.news[i])
+          console.log(this.styles[i])
+          arr.push(this.styles[i])
         }
       }
       this.aaa=arr
@@ -176,7 +176,7 @@ export default {
             border-bottom: 3px solid #33ba3c;
           }
         }
-        .news-search{
+        .style-search{
           width: 335px;
           height: 40px;
           margin: 14px auto;

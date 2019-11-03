@@ -2,9 +2,7 @@
   <div id="news">
     <div class="news-title">蔚蓝云朵艺术学校</div>
     <div class="news-con">
-      <div class="con-top">
-        <img src="../../../static/img/蔚蓝风采首页/3_03.jpg" alt="">
-      </div>
+      <all-header-img />
       <div class="con-center">
         <img src="../../../static/img/新闻中心首页/2_02.jpg" alt="">
       </div>
@@ -30,10 +28,12 @@
 
 <script>
 import NewCom from '@/components/newcom'
+import AllHeaderImg from '@/components/allheaderimg'
 export default {
   name: 'news',
   components:{
-    NewCom
+    NewCom,
+    AllHeaderImg
   },
   data(){
     return {
@@ -59,29 +59,15 @@ export default {
         {
           type:'2',
           id:1,
-          title:'狗屎瑞大厦X1，哈哈哈哈哈哈哈哈哈哈哈啊哈哈',
-          con:'en,你说的对，哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈',
-          time:'2018-09-62 25:20:60'
-        },
-        {
-          type:'4',
-          id:2,
-          title:'狗屎瑞大厦X2，哈哈哈哈哈哈哈哈哈哈哈啊哈哈',
-          con:'en,你说的对，哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈',
-          time:'2018-09-62 25:20:60'
-        },
-        {
-          type:'2',
-          id:3,
-          title:'狗屎瑞大厦X3，哈哈哈哈哈哈哈哈哈哈哈啊哈哈',
-          con:'en,你说的对，哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈',
+          title:'喜讯|蔚蓝云朵艺术学校声乐学员孙汉卿',
+          con:'喜讯|蔚蓝云朵艺术学校声乐学员孙汉卿哈',
           time:'2018-09-62 25:20:60'
         },
         {
           type:'3',
-          id:4,
-          title:'狗屎瑞大厦X4，哈哈哈哈哈哈哈哈哈哈哈啊哈哈',
-          con:'en,你说的对，哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈',
+          id:2,
+          title:'教育部的最新通知：拆除所有学校',
+          con:'教育部的最新通知：拆除所有学校哈哈哈',
           time:'2018-09-62 25:20:60'
         }
       ],
@@ -128,16 +114,16 @@ export default {
   }
   .news-con{
     width: 100vw;
-    .con-top{
-      width: 100vw;
-      height: 48px;
-      text-align: center;
-      img{
-        width: 131px;
-        height: 33px;
-        margin-top: 2px;
-      }
-    }
+    // .con-top{
+    //   width: 100vw;
+    //   height: 48px;
+    //   text-align: center;
+    //   img{
+    //     width: 131px;
+    //     height: 33px;
+    //     margin-top: 2px;
+    //   }
+    // }
     .con-center{
       width: 100vw;
       height: 140px;
