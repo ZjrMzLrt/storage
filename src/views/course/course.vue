@@ -87,6 +87,7 @@
 			font-size: 18px;
 			position: fixed;
 			top: 0;
+			left: 0;
 			span{
 				position: absolute;
 				left: 20px;

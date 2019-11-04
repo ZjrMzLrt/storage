@@ -38,12 +38,16 @@
 	   				</router-link>
 	   			</li>
 	   			<li>
-	   				<img src="/static/img/首页/1_11.png" alt="">
-	   				<p>培训课表</p>
+	   				<router-link tag='div' to='/days'>
+	   					<img src="/static/img/首页/1_11.png" alt="">
+	   					<p>培训课表</p>
+	   				</router-link>
 	   			</li>
 	   			<li>
-	   				<img src="/static/img/首页/1_13.png" alt="">
-	   				<p>授课老师</p>
+	   				<router-link tag='div' to='/teachers'>
+	   					<img src="/static/img/首页/1_13.png" alt="">
+	   					<p>授课老师</p>
+	   				</router-link>
 	   			</li>
 	   			<li>
 	   				<img src="/static/img/首页/1_15.png" alt="">
@@ -52,7 +56,7 @@
 	   		</ul>
 	   	</div>
 	   	<!-- icon图标结束 -->
-	   	<div class="reser">
+	   	<div class="reser" @click='add'>
 	   		<span>火爆预约中：蔚蓝云朵艺术；</span>
 	   		<p>预约</p>
 	   	</div>
@@ -62,7 +66,7 @@
 	   			<p>体验课</p>
 	   			<span>更多></span>
 	   		</div>
-	   		<div class="resers">
+	   		<div class="resers" @click='godetails'>
 	   			<div>
 	   				<p>66元体验舞蹈，美术课程是一个...</p>
 	   				<p>￥66.00</p>
@@ -93,15 +97,30 @@
 	   		</div>
 	   	</div>
     </div>
+    <mt-popup
+			  v-model="popupVisible"
+			  position="bottom">
+			  <div class="box">
+			  	<p>预约信息</p>
+			  	<div class="inp">
+			  		<input type="text" placeholder="请填写姓名" v-model.trim='user'>
+			  		<input type="text" placeholder="请填写手机号" v-model.trim='pone'>
+			  		<p class='btn' @click='go'>预约试听</p>
+			  	</div>
+			  </div>
+			</mt-popup>
   </div>
 </template>
 
 <script>
-import { Swipe, SwipeItem } from 'mint-ui';
+import { Swipe, SwipeItem,Popup,Toast,MessageBox} from 'mint-ui';
 import audition from '@/components/audition'
 export default{
 	data(){
 		return {
+			popupVisible: false,
+			user: '',
+			pone: '',
 			auditionList: [
 				'声乐',
 				'钢琴',
@@ -131,7 +150,26 @@ export default{
 			this.$router.push({
 				path: '/course'
 			})
-		}
+		},
+		godetails(){
+			this.$router.push({
+				path: '/cosDetails2'
+			})
+		},
+		add(){
+				this.popupVisible = true;
+			},
+			go(){
+				if(this.user && this.pone){
+					this.popupVisible = false;
+					MessageBox('提示', '预约成功');
+				}else{
+					Toast({
+					  message: '姓名或手机号有误',
+					  duration: 1000
+					});
+				}
+			},
 	},
 	components: {
 		audition
@@ -143,6 +181,32 @@ export default{
 #index{
 	width: 100vw;
 	height: 180vh;
+	.box{
+			width: 375px;
+			box-sizing: border-box;
+			padding: 10px;
+			>p{
+				padding: 0 20px;
+				border-left: 2px solid rgb(0,163,218);
+			}
+			.inp{
+				margin-top: 10px;
+				input{
+					width: 100%;
+					height: 30px;
+					border: none;
+					margin: 10px 0;
+				}
+				.btn{
+					width: 100%;
+					height: 30px;
+					color: #fff;
+					background: rgb(0,163,218);
+					text-align: center;
+					line-height: 30px;
+				}
+			}
+		}
 	.body{
 		box-sizing: border-box;
 		padding: 0 5px;

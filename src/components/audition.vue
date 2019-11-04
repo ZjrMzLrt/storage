@@ -1,5 +1,5 @@
 <template>
-	<div id="audition">
+	<div id="audition" @click='godetails'>
 		<div class="left">
 			<img src="/static/img/首页/1_22.png" alt="">
 		</div>
@@ -18,6 +18,16 @@
 	export default{
 		props: {
 			name: {}
+		},
+		methods: {
+			godetails(){
+				this.$router.push({
+					path: '/cosDetails',
+					query: {
+						name: this.name
+					}
+				})
+			}
 		}
 	}
 </script>
