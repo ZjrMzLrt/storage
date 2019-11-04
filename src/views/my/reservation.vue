@@ -8,17 +8,17 @@
       暂无没有预约数据
     </div>
     <div class="haveDiv" v-if="showFlag">
-      <div class="everyOne">
+      <div class="everyOne" v-for="(item,index) in reservationData" :key="index">
         <div class="everyTop">
           <p class="everyTopLeft">
-            2019-11-02 04:50
+           {{item.time|formDate}}
           </p>
           <p class="everyTopRight">
             试听课
           </p>
         </div>
         <div class="everyBottom">
-          <p class="pino">钢琴</p>
+          <p class="pino">{{item.class}}</p>
         </div>
       </div>
       <p class="noneFont">没有更多了</p>
@@ -30,13 +30,40 @@
   export default {
     data() {
       return {
-        showFlag:true
+        showFlag:true,
+        reservationData:[
+          {
+            time:1572830926000,
+            class:'钢琴'
+          }
+        ]
       }
     },
     methods: {
       goBack() {
         this.$router.go(-1)
       }
+    },
+    mounted() {
+      if(this.reservationData[0]){
+        this.showFlag = true
+      }else{
+        this.showFlag = false
+      }
+    },
+    filters:{//过滤器
+    	//时间
+    	formDate(time){
+    		let data = new Date(time);
+    		let y = data.getFullYear();
+    		let m = data.getMonth() + 1;
+    		let d = data.getDate();
+    		let h = data.getHours();
+    		let mm = data.getMinutes();
+    		return `${y}-${m}-${d} ${h}:${mm}`;
+    		//千位分隔符
+    		//return time.toLocaleString()
+    	}
     }
   }
 </script>
@@ -48,7 +75,7 @@
     height: 100vh;
     
     .title {
-      width: 375px;
+     width: 100vw;
       height: 40px;
       text-align: center;
       font-size: 18px;

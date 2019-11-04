@@ -8,14 +8,14 @@
       暂无没有购买数据
     </div>
     <div class="haveDiv" v-if="showFlag">
-      <div class="everyBox">
+      <div class="everyBox" v-for="(item,index) in alreadyBuyData" :key="index">
         <div class="everyBoxLeft">
-          <p class="everuBoxLeftTop">舞蹈</p>
+          <p class="everuBoxLeftTop">{{item.class}}</p>
           <p class="everuBoxLeftBottom">正式课</p>
         </div>
         <div class="everyBoxRight">
-          <p class="everuBoxLeftTop" style="color: #49A3B3;font-weight: bold;">舞蹈</p>
-          <p class="everuBoxLeftBottom">正式课</p>
+          <p class="everuBoxLeftTop" style="color: #49A3B3;font-weight: bold;">{{item.money}}</p>
+          <p class="everuBoxLeftBottom">线上购买</p>
         </div>
       </div>
       <p class="noneFont">没有更多了</p>
@@ -27,25 +27,36 @@
   export default {
     data() {
       return {
-        showFlag:true
+        showFlag: true,
+        alreadyBuyData: [{
+          class: '舞蹈',
+          money: '免费'
+        }]
       }
     },
     methods: {
       goBack() {
         this.$router.go(-1)
       }
+    },
+    mounted() {
+      if (this.alreadyBuyData[0]) {
+        this.showFlag = true
+      } else {
+        this.showFlag = false
+      }
     }
   }
 </script>
 
 <style lang="scss">
-  .alreadyBuy{
+  .alreadyBuy {
     background: #F5F5F5;
     width: 100vw;
     height: 100vh;
-    
+
     .title {
-      width: 375px;
+      width: 100vw;
       height: 40px;
       text-align: center;
       font-size: 18px;
@@ -54,7 +65,7 @@
       line-height: 40px;
       position: relative;
     }
-    
+
     .goBack {
       width: 40px;
       height: 40px;
@@ -67,7 +78,8 @@
       left: 0px;
       font-weight: bold;
     }
-    .noneDiv{
+
+    .noneDiv {
       width: 100%;
       height: calc(100vh - 40px);
       text-align: center;
@@ -75,11 +87,13 @@
       color: #ACACAC;
       line-height: calc(100vh - 500px);
     }
-    .haveDiv{
+
+    .haveDiv {
       width: 100%;
       height: calc(100vh - 40px);
     }
-    .noneFont{
+
+    .noneFont {
       width: 100px;
       height: 37px;
       font-size: 13px;
@@ -88,7 +102,8 @@
       line-height: 37px;
       margin: 0 auto;
     }
-    .everyBox{
+
+    .everyBox {
       width: 347px;
       height: 88px;
       border: 1px solid #FAFAFA;
@@ -99,28 +114,32 @@
       align-items: center;
       justify-content: space-between;
     }
-    .everyBoxLeft{
+
+    .everyBoxLeft {
       width: 150px;
       height: 100%;
       line-height: 88px;
       margin-left: 15px;
     }
-    .everyBoxRight{
-       width: 150px;
+
+    .everyBoxRight {
+      width: 150px;
       height: 100%;
       line-height: 88px;
       margin-right: 15px;
       text-align: right;
     }
-    .everuBoxLeftTop{
+
+    .everuBoxLeftTop {
       width: 100%;
       height: 44px;
       line-height: 44px;
       font-size: 15px;
       color: #626262;
     }
-    .everuBoxLeftBottom{
-       width: 100%;
+
+    .everuBoxLeftBottom {
+      width: 100%;
       height: 44px;
       line-height: 44px;
       font-size: 14px;

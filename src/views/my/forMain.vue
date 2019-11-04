@@ -46,7 +46,7 @@
     height: 100vh;
 
     .title {
-      width: 375px;
+      width: 100vw;
       height: 40px;
       text-align: center;
       font-size: 18px;

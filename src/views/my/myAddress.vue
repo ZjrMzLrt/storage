@@ -10,19 +10,19 @@
       <p class="smallFont">点击添加按钮可添加</p>
     </div>
     <div class="haveBox" v-if="showFlag">
-      <div class="everyAddress">
+      <div class="everyAddress" v-for="(item,index) in myAddressData" :key="index">
         <div class="everyAddressTop">
           <div class="eatTop">
-            <p class="name">张锦瑞</p>
-            <p class="sex">先生</p>
-            <p class="phone">15042627415</p>
-            <p class="address">公司</p>
+            <p class="name">{{item.name}}</p>
+            <p class="sex">{{item.sex}}</p>
+            <p class="phone">{{item.phone}}</p>
+            <p class="address">{{item.address}}</p>
           </div>
-          <div class="eatBottom">北京北京市地球村</div>
+          <div class="eatBottom">{{item.detailsAddress}}</div>
         </div>
         <div class="everyAddressBottom">
           <div class="ofj">
-            <input type="checkbox" class="trueFlag">
+            <input type="checkbox" class="trueFlag" v-model="item.status" />
             <p class="isOk">设为默认</p>
           </div>
           <div class="ofj">
@@ -39,19 +39,34 @@
 </template>
 
 <script>
-  export default{
-    data(){
-      return{
-        showFlag:true
+  export default {
+    data() {
+      return {
+        showFlag: true,
+        myAddressData: [{
+          name: '张锦瑞',
+          sex: '先生',
+          phone: '15042627415',
+          address: '公司',
+          detailsAddress: '北京北京市地球村',
+          status: true
+        }]
       }
     },
-    methods:{
+    mounted() {
+      if (this.myAddressData[0]) {
+        this.showFlag = true
+      } else {
+        this.showFlag = false
+      }
+    },
+    methods: {
       goBack() {
         this.$router.go(-1)
       },
-      goAddAddress(){
+      goAddAddress() {
         this.$router.push({
-          path:'/addAddress'
+          path: '/addAddress'
         })
       }
     }
@@ -59,12 +74,13 @@
 </script>
 
 <style lang="scss">
-  .myAddress{
+  .myAddress {
     width: 100vw;
     background: #F5F5F5;
     height: 100vh;
+
     .title {
-      width: 375px;
+      width: 100vw;
       height: 40px;
       text-align: center;
       font-size: 18px;
@@ -73,7 +89,7 @@
       line-height: 40px;
       position: relative;
     }
-    
+
     .goBack {
       width: 40px;
       height: 40px;
@@ -86,14 +102,16 @@
       left: 0px;
       font-weight: bold;
     }
-    .btnBox{
+
+    .btnBox {
       width: 100%;
       height: 67px;
       background: #fff;
       display: flex;
       align-items: center;
       justify-content: space-around;
-      &>button{
+
+      &>button {
         width: 335px;
         height: 47px;
         background: #1FAA1D;
@@ -104,7 +122,8 @@
         border-radius: 4px;
       }
     }
-    .noneBox{
+
+    .noneBox {
       width: 100vw;
       height: calc(100vh - 40px - 67px);
       border-bottom: 1px solid #E9E9E9;
@@ -112,44 +131,52 @@
       flex-direction: column;
       align-items: center;
     }
-    .haveBox{
+
+    .haveBox {
       width: 100vw;
       height: calc(100vh - 40px - 67px);
       border-bottom: 1px solid #E9E9E9;
     }
-    .ressImg{
+
+    .ressImg {
       width: 78px;
       height: 100px;
       margin-top: 60px;
     }
-    .bigFont{
+
+    .bigFont {
       font-size: 16px;
       color: #808080;
       margin-top: 20px;
     }
-    .smallFont{
+
+    .smallFont {
       font-size: 13px;
       color: #808080;
       margin-top: 10px;
     }
-    .everyAddress{
+
+    .everyAddress {
       width: 100vw;
       height: 114px;
       background: #fff;
-      border-bottom:1px solid #F8F8F8;
+      border-bottom: 1px solid #F8F8F8;
     }
-    .everyAddressTop{
+
+    .everyAddressTop {
       width: 100vw;
       height: 68px;
-      border-bottom:1px solid #F8F8F8;
+      border-bottom: 1px solid #F8F8F8;
     }
-    .eatTop{
+
+    .eatTop {
       width: 300px;
       height: 38px;
       display: flex;
       align-items: center;
     }
-    .eatBottom{
+
+    .eatBottom {
       width: 300px;
       height: 30px;
       line-height: 30px;
@@ -157,12 +184,14 @@
       color: #969696;
       margin-left: 15px;
     }
-    .eatTop>p{
+
+    .eatTop>p {
       font-size: 15px;
       color: #4D4D4D;
       margin-left: 15px;
     }
-    .address{
+
+    .address {
       width: 35px;
       height: 21px;
       text-align: center;
@@ -171,14 +200,16 @@
       border: 1px solid #489C4B;
       color: #489C4B !important;
     }
-    .everyAddressBottom{
+
+    .everyAddressBottom {
       width: 100%;
       height: 45px;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
-    .ofj{
+
+    .ofj {
       width: 140px;
       height: 100%;
       background: #fff;
@@ -186,7 +217,8 @@
       align-items: center;
       justify-content: space-around;
     }
-    .trueFlag{
+
+    .trueFlag {
       outline: none;
       border: none;
       background: #fff !important;
@@ -195,12 +227,14 @@
       border: 1px solid #D4D4D4;
       border-radius: 50%;
     }
-    .isOk{
+
+    .isOk {
       font-size: 13px;
       color: #969696;
     }
-    .lh{
-      width:40%;
+
+    .lh {
+      width: 40%;
       height: 100%;
       display: flex;
       align-items: center;
