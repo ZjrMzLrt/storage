@@ -1,5 +1,5 @@
 <template>
-  <div class="my">
+  <div class="<!-- my -->">
     <p class="title">我的</p>
     <div class="imgName">
       <img src="../../../static/img/新闻中心首页/新闻详情/2-1_03.jpg" alt="" class="imgHead">
@@ -84,7 +84,7 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped="scoped">
   .my {
     width: 100vw;
     height: calc(100vh - 9vh);
