@@ -1,5 +1,5 @@
 <template>
-  <div id='index'>
+  <div id='home'>
   	<div class="title">
   		蔚蓝云朵艺术学校
   	</div>
@@ -178,7 +178,7 @@ export default{
 </script>
 
 <style lang='scss'>
-#index{
+#home{
 	width: 100vw;
 	height: 180vh;
 	.box{
