@@ -3,8 +3,10 @@
     <router-view></router-view>
 		<ul class='tab'>
 			<router-link v-for='item,index in routerList' :key='index' tag='li' :to='item.path'>
-        <img :src="item.sele?item.src2:item.src" alt="" @click='tab(index)'>
-        <p>{{item.txt}}</p>
+          <div @click='tab(index)'>
+            <img :src="item.sele?item.src2:item.src" alt="">
+            <p>{{item.txt}}</p>
+          </div>
       </router-link>
 		</ul>
 	</div>
@@ -53,9 +55,10 @@
     },
     methods: {
       tab(index){
+        console.log(1)
         this.getImg(this.aIndex);
         this.aIndex = index;
-        this.getImg(index)
+        this.getImg(index);
       },
       getImg(index){
         setTimeout(() => {
@@ -85,6 +88,11 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+      div{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
     }
 	}
   img{
