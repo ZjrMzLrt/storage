@@ -8,6 +8,10 @@ import axios from 'axios'
 import mintUi from 'mint-ui'
 import 'mint-ui/lib/style.css'
 
+ import zScroll from "@/components/scroll.vue"
+ 
+ Vue.component('zScroll',zScroll)
+
 Vue.use(mintUi)
 Vue.config.productionTip = false
 

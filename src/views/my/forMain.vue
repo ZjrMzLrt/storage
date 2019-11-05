@@ -4,26 +4,28 @@
       联系我们
       <p @click="goBack()" class="goBack">〈</p>
     </div>
-    <div class="bigBox">
-      <img src="../../../static/img/我的首页/联系我们/3_03.jpg" alt="" class="logoImg">
-      <img src="../../../static/img/我的首页/联系我们/4-2_02.jpg" alt="" class="formeImg">
-      <p class="formeFont">蔚蓝云朵艺术学院</p>
-      <img src="../../../static/img/我的首页/联系我们/4-2_05.jpg" alt="" class="placeImg">
-      <ul class="list">
-        <li>
-          <p class="blcakcc">地址</p>
-          <p class="cccFont">郑州市管城区中州大道航海路交叉口福田太阳城东方美食街西行50米映月路社区办公楼激荡史展览馆b1</p>
-        </li>
-        <li>
-          <p class="blcakcc">电话</p>
-          <p class="cccFont">400-800-9988</p>
-        </li>
-        <li>
-          <p class="blcakcc">手机</p>
-          <p class="cccFont">15042627415</p>
-        </li>
-      </ul>
-    </div>
+    <zScroll class="sideBox">
+      <div class="bigBox">
+        <img src="../../../static/img/我的首页/联系我们/3_03.jpg" alt="" class="logoImg">
+        <img src="../../../static/img/我的首页/联系我们/4-2_02.jpg" alt="" class="formeImg">
+        <p class="formeFont">蔚蓝云朵艺术学院</p>
+        <img src="../../../static/img/我的首页/联系我们/4-2_05.jpg" alt="" class="placeImg">
+        <ul class="list">
+          <li>
+            <p class="blcakcc">地址</p>
+            <p class="cccFont">郑州市管城区中州大道航海路交叉口福田太阳城东方美食街西行50米映月路社区办公楼激荡史展览馆b1</p>
+          </li>
+          <li>
+            <p class="blcakcc">电话</p>
+            <p class="cccFont">400-800-9988</p>
+          </li>
+          <li>
+            <p class="blcakcc">手机</p>
+            <p class="cccFont">15042627415</p>
+          </li>
+        </ul>
+      </div>
+    </zScroll>
   </div>
 </template>
 
@@ -44,7 +46,11 @@
   .forMain {
     width: 100vw;
     height: 100vh;
-
+    .sideBox{
+      width: 100vw;
+      height: calc(100vh - 40px);
+      overflow: hidden;
+    }
     .title {
       width: 100vw;
       height: 40px;
@@ -118,11 +124,13 @@
       justify-content: space-between;
       border-bottom: 1px solid #F5F5F5;
     }
-    .blcakcc{
+
+    .blcakcc {
       font-size: 15px;
       color: #0F0F0F;
     }
-    .cccFont{
+
+    .cccFont {
       width: 225px;
       font-size: 14px;
       color: #838383;

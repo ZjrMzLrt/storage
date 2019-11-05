@@ -49,6 +49,9 @@
 </script>
 <style lang='scss'>
 	#teaDetails{
+    width: 100vw;
+    height: 100vh;
+    background: #F5F5F5;
 		.title{
 			width: 375px;
 			height: 40px;
@@ -73,15 +76,15 @@
 			margin-left: -156px;
 			position: absolute;
 			z-index: 100;
-			top: 35px;
+			top: 45px;
 		}
 
 		.ka{
 			width: 310px;
 			height: 205px;
-			border: 1px solid #000;
-			background: #fff;
+      background: #fff;
 			border-radius: 5px;
+      margin-bottom: 10px;
 			.top{
 				display: flex;
 				justify-content: flex-end;
@@ -89,7 +92,7 @@
 					width: 70px;
 				}
 				div{
-					width: 50%;
+					width: 61%;
 					height: 80px;
 					display: flex;
 					align-items: center;
@@ -108,6 +111,7 @@
 				display: flex;
 				height: 50px;
 				margin-top: 20px;
+        line-height: 50px;
 				div{
 					flex: 1;
 					text-align: center;
