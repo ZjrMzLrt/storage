@@ -18,7 +18,6 @@
             <new-com :newsData="aaa"/>
           </mt-tab-container>
 
-
         </div>
         
       </div>
@@ -66,8 +65,8 @@ export default {
         {
           type:'3',
           id:2,
-          title:'教育部的最新通知：拆除所有学校',
-          con:'教育部的最新通知：拆除所有学校哈哈哈',
+          title:'教育部的最新通知',
+          con:'教育部的最新通知：免除所有学杂费',
           time:'2018-09-62 25:20:60'
         }
       ],

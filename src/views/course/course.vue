@@ -76,6 +76,9 @@
 </script>
 <style lang='scss'>
 	#exper{
+		width: 100vw;
+		height: calc(100vh - 40px);
+		background: #f5f5f5;
 		.title{
 			width: 375px;
 			height: 40px;
@@ -94,13 +97,14 @@
 			}
 		}
 		.body{
-			margin-top: 45px;
+			margin-top: 40px;
 		}
 		ul{
 			display: flex;
 			height: 40px;
 			justify-content: space-around;
 			font-size: 14px;
+			background: #fff;
 			li{
 				width: 35px;
 				line-height: 40px;

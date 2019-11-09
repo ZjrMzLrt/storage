@@ -2,7 +2,7 @@
 	<div id="index">
     <router-view></router-view>
 		<ul class='tab'>
-			<router-link v-for='item,index in routerList' :key='index' tag='li' :to='item.path'>
+			<router-link v-for='(item,index) in routerList' :key='index' tag='li' :to='item.path'>
           <div @click='tab(index)'>
             <img :src="item.sele?item.src2:item.src" alt="">
             <p>{{item.txt}}</p>

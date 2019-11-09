@@ -66,15 +66,15 @@
           <div class="exper">
             <div class="top" @click="goTasteOf()">
               <p>体验课</p>
-              <span>更多></span>
+              <span class="more">更多></span>
             </div>
             <div class="resers" @click='godetails'>
               <div>
                 <p>66元体验舞蹈，美术课程是一个...</p>
-                <p>￥66.00</p>
+                <p style="margin-right:20px;">￥66.00</p>
               </div>
               <div>
-                <p>45人以报名</p>
+                <p style="margin-left:15px;">45人以报名</p>
                 <p class='btn'>报名体验</p>
               </div>
             </div>
@@ -83,19 +83,19 @@
           <div class="cour">
             <div class="top">
               <p>精品课程</p>
-              <span @click='goExper'>更多></span>
+              <span class="more" @click='goExper'>更多></span>
             </div>
-            <audition v-for='item,index in auditionList' :key='index' :name='item'></audition>
+            <audition v-for='(item,index) in auditionList' :key='index' :name='item'></audition>
           </div>
           <!-- 精品课程结束 -->
           <div class="video">
             <div class="top" @click="goAudios()">
               <p>视频实录</p>
-              <span>更多></span>
+              <span class="more">更多></span>
             </div>
             <div class="conent">
               <img src="/static/img/首页/1_26.png" alt="">
-              <p>省教育领导及市教育领导一行亲临华系指导工作</p>
+              <p>省教育领导及市教育领导一行亲临华系指导工作省教育领导及市教育领导一行亲临华系指导工作省教育领导及市教育领导一行亲临华系指导工作</p>
             </div>
           </div>
         </div>
@@ -109,7 +109,9 @@
             </div>
           </div>
         </mt-popup>
+        <div style="height:10vh;width:100vw;"></div>
       </div>
+      
     </zScroll>
   </div>
 </template>
@@ -197,8 +199,9 @@
 <style lang='scss'>
   #home {
     width: 100vw;
-    height: 180vh;
-
+    // height: auto;
+    // margin-bottom: 9vh;
+    background: #f5f5f5;
     .box {
       width: 375px;
       box-sizing: border-box;
@@ -236,7 +239,8 @@
       margin-top: 45px;
     }
     .sideBox{
-      width: 100vw;
+      width: 360px;
+      margin: 0 auto;
       height: calc(100vh - 40px);
     }
     .title {
@@ -264,28 +268,36 @@
     /* 联系我们 */
     .call {
       display: flex;
-
-      img {
-        width: 20px;
-      }
+      justify-content: space-between;
+      
 
       .call_left {
         p:nth-child(1) {
-          font-size: 16px;
+          font-size: 14px;
         }
-
+        p:nth-child(2){
+          font-size: 12px;
+          color: #a6a6a6;
+        }
         p {
           margin-top: 10px;
+          margin-left: 10px;
         }
       }
 
       .call_right {
-        margin-left: 50px;
+        padding-right: 10px;
 
         div {
           display: flex;
           align-items: center;
           margin-top: 5px;
+          font-size: 12px;
+          color: #04a3d2;
+          img {
+            width: 20px;
+            margin-right: 5px;
+          }
         }
       }
     }
@@ -302,7 +314,8 @@
           text-align: center;
 
           p {
-            margin-top: 5px;
+            font-size: 12px;
+            margin-top: 10px;
           }
         }
 
@@ -318,13 +331,12 @@
       height: 50px;
       border-radius: 5px;
       margin-top: 20px;
+      padding: 0 15px;
+      justify-content: space-between;
       align-items: center;
       background: rgb(242, 111, 91);
       color: #fff;
 
-      span {
-        margin-left: 20px;
-      }
 
       p {
         width: 88px;
@@ -342,8 +354,10 @@
     /* 体验课 */
     .exper {
       margin-top: 20px;
+     
 
       .top {
+        
         display: flex;
         justify-content: space-between;
         font-size: 16px;
@@ -358,16 +372,18 @@
       .resers {
         height: 90px;
         background: rgb(146, 144, 256);
-        box-sizing: border-box;
-        padding: 20px 5px;
+        padding: 0px 15px;
         color: #fff;
         margin-top: 10px;
         border-radius: 5px;
-
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        font-size: 14px;
         div {
           display: flex;
           justify-content: space-between;
-          margin-bottom: 10px;
+          // margin-bottom: 10px;
           align-items: center;
 
           .btn {
@@ -403,7 +419,7 @@
     /* 视频实录 */
     .video {
       margin-top: 20px;
-
+      
       .top {
         display: flex;
         justify-content: space-between;
@@ -418,17 +434,24 @@
 
       .conent {
         margin-top: 10px;
+        background: #fff;
+        border-radius: 5px;
 
         p {
           font-size: 14px;
           box-sizing: border-box;
           padding: 10px 20px;
+          line-height: 20px;
         }
       }
 
       img {
         width: 100%;
       }
+    }
+    .more{
+      font-size: 12px;
+      color: #969696;
     }
   }
 </style>

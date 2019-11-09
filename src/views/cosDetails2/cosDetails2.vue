@@ -38,7 +38,7 @@
 							<p>总校长</p>
 						</div>
 					</div>
-					<span>></span>
+					<span style="font-weight: 900;">&gt;</span>
 				</div>
 			</div>
 			<div class="zhi">

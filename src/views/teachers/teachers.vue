@@ -14,7 +14,7 @@
               <p>{{item.tea}}</p>
             </div>
           </div>
-          <span style="margin-right: 5px;color: #969696;">
+          <span style="margin-right: 15px;color: #969696;">
             >
           </span>
         </li>
@@ -126,18 +126,18 @@
 
       span {
         position: absolute;
-        left: 20px;
+        left: 10px;
       }
     }
 
     ul {
-      width: 310px;
-      margin: 45px auto;
+      width: 350px;
+      margin:  auto;
       font-size: 14px;
 
       li {
         display: flex;
-        width: 311px;
+        width: 350px;
         height: 90px;
         justify-content: space-between;
         align-items: center;
@@ -160,6 +160,10 @@
 
             p {
               margin-top: 10px;
+              font-size: 13px;
+            }
+            p:nth-child(1){
+              color: #777
             }
           }
         }

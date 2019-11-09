@@ -50,7 +50,7 @@
 <style lang='scss'>
 	#teaDetails{
     width: 100vw;
-    height: 100vh;
+    // height: 100vh;
     background: #F5F5F5;
 		.title{
 			width: 375px;
@@ -66,21 +66,17 @@
 			left: 0;
 			span{
 				position: absolute;
-				left: 20px;
+				left: 10px;
 			}
 		}
 		
 		.body{
-			width: 312px;
-			left: 50%;
-			margin-left: -156px;
-			position: absolute;
-			z-index: 100;
-			top: 45px;
+			width: 350px;
+			margin: 40px auto 0;
 		}
 
 		.ka{
-			width: 310px;
+			width: 350px;
 			height: 205px;
       background: #fff;
 			border-radius: 5px;
@@ -124,11 +120,13 @@
 		}
 		.conent{
 				img{
-					width: 310px;
+					width: 350px;
+					margin-bottom: 20px;
 				}
 				p{
 					text-align: center;
 					margin-top: 50px;
+					padding-bottom: calc(100vh - 307px);
 				}
 			}
 	}
