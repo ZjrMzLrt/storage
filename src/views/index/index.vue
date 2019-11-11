@@ -12,7 +12,7 @@
 	</div>
 </template>
 <script>
-	export default{
+export default{
     mounted(){
       for(let i = 0;i<4;i++){
         this.getImg(i);
@@ -50,7 +50,8 @@
             src: '/static/img/tab_07.jpg',
             src2: '/static/img/tab_07_05.jpg'
           }
-        ]
+        ],
+		url:''
       }
     },
     methods: {
@@ -71,8 +72,11 @@
           }
         },100)
       }
-    }
+    },
+	created(){
+		localStorage.url='http://192.168.43.209:8800/'
 	}
+}
 </script>
 <style lang='scss' scoped="">
 	ul{

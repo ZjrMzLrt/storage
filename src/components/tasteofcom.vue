@@ -34,7 +34,8 @@ export default{
         }
     },
     mounted(){
-        this.axios.post("http://192.168.43.209:8800/getexper").then((res)=>{
+		var url=localStorage.url
+        this.axios.post(url+"getexper").then((res)=>{
             console.log(res.data.data)
             this.tasteData=res.data.data
         })

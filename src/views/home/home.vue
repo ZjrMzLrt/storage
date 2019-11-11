@@ -181,7 +181,8 @@
       audition
     },
     mounted(){
-      this.axios.post("http://192.168.43.209:8800/index").then((res)=>{
+		var url=localStorage.url
+      this.axios.post(url+"index").then((res)=>{
         var a=[]
         for (let i = 0; i < res.data.banner.length; i++) {
           console.log(res.data.banner[i])

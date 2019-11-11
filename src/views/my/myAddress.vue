@@ -54,15 +54,17 @@
       }
     },
     mounted() {
-		this.axios.post("http://192.168.43.209:8800/getress").then((res)=>{
+		var url=localStorage.url
+		console.log(url)
+		this.axios.post(url+'getress').then((res)=>{
 			console.log(res.data.ress)
 			this.myAddressData=res.data.ress
 		})
-      if (this.myAddressData[0]) {
-        this.showFlag = true
-      } else {
-        this.showFlag = false
-      }
+      // if (this.myAddressData[0]) {
+      //   this.showFlag = true
+      // } else {
+      //   this.showFlag = false
+      // }
     },
     methods: {
       goBack() {

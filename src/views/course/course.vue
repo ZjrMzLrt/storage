@@ -56,7 +56,8 @@
 			ification
 		},
 		mounted(){
-			this.axios.post("http://192.168.43.209:8800/getcourse").then((res)=>{
+			var url=localStorage.url
+			this.axios.post(url+"getcourse").then((res)=>{
 				console.log(res.data)
 				this.routerList=res.data.experbtn
 			})

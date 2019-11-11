@@ -87,8 +87,8 @@
 		},
 		mounted(){
 			console.log(this.$route.query.id)
-
-			this.axios.post("http://192.168.43.209:8800/getexper").then((res)=>{
+			var url=localStorage.url
+			this.axios.post(url+"getexper").then((res)=>{
 				// console.log(res.data.data)
 				for (let i = 0; i < res.data.data.length; i++) {
 					if (this.$route.query.id== res.data.data[i].id) {
