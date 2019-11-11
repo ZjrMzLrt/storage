@@ -18,7 +18,7 @@
             <p class="phone">{{item.pone}}</p>
             <p class="address">{{item.res}}</p>
           </div>
-          <div class="eatBottom">{{item.ress}}</div>
+          <div class="eatBottom">{{item.ress1}}{{item.ress2}}{{item.ress3}}{{item.ress4}}</div>
         </div>
         <div class="everyAddressBottom">
           <div class="ofj">
@@ -26,8 +26,8 @@
             <p class="isOk">设为默认</p>
           </div>
           <div class="ofj">
-            <p class="lh"><img src="../../../static/img/我的首页/我的地址页/pen.png" alt=""> 编辑</p>
-            <p class="lh"><img src="../../../static/img/我的首页/我的地址页/del.png" alt=""> 删除</p>
+            <p class="lh"><img src="../../../static/img/我的首页/我的地址页/pen.png" alt="" @click="changeFn(item)"> 编辑</p>
+            <p class="lh"><img src="../../../static/img/我的首页/我的地址页/del.png" alt="" @click="delFn(item.id)"> 删除</p>
           </div>
         </div>
       </div>
@@ -53,13 +53,15 @@
         }]
       }
     },
+    created() {
+      setTimeout(() => {
+        this.forDataList()
+      }, 300)
+
+    },
     mounted() {
-		var url=localStorage.url
-		console.log(url)
-		this.axios.post(url+'getress').then((res)=>{
-			console.log(res.data.ress)
-			this.myAddressData=res.data.ress
-		})
+      var url = localStorage.url
+      console.log(url)
       // if (this.myAddressData[0]) {
       //   this.showFlag = true
       // } else {
@@ -67,12 +69,37 @@
       // }
     },
     methods: {
+      forDataList() {
+        this.axios.post(localStorage.url + 'getress').then((res) => {
+          console.log(res.data.ress)
+          this.myAddressData = res.data.ress
+        })
+      },
       goBack() {
-        this.$router.go(-1)
+        this.$router.push({
+          path: '/settingUp'
+        })
       },
       goAddAddress() {
         this.$router.push({
           path: '/addAddress'
+        })
+      },
+      delFn(id) {
+        this.axios.post(localStorage.url + 'removeress', {
+          id: id
+        }).then((req) => {
+          console.log(req);
+          this.forDataList()
+        })
+      },
+      changeFn(item) {
+        console.log(item);
+        this.$router.push({
+          path: '/addAddress',
+          query: {
+            item
+          }
         })
       }
     }

@@ -7,7 +7,7 @@
     <div class="bigBox">
       <div class="iptTwo">
         <p class="ipt1">联系人</p>
-        <input type="text" placeholder="姓名" class="ipt2">
+        <input type="text" placeholder="姓名" class="ipt2" v-model="nowName">
       </div>
       <div class="twoInfo">
         <p :class="{'fontActive':greenFont=='先生'}" @click="chengColor(1)">先生</p>
@@ -15,7 +15,7 @@
       </div>
       <div class="iptTwo">
         <p class="ipt1">电 话</p>
-        <input type="text" placeholder="手机号码" class="ipt2">
+        <input type="text" placeholder="手机号码" class="ipt2" v-model="telPhone">
       </div>
       <div class="iptTwo" @click="iptOne()">
         <p class="ipt1">省 份</p>
@@ -35,7 +35,7 @@
       <div class="detailsRess">
         <p class="ipt1" style="margin-left: 10px;font-size: 14px;">详细地址</p>
         <div class="bigDiv">
-          <input type="text" class="textArea" placeholder="详细地址">
+          <input type="text" class="textArea" placeholder="详细地址" v-model="detailsR">
           <div class="fiveP">
             <p class="fiveEver" :class="{'fontActive':fiveColor==item}" v-for="(item,index) in fiveList" :key="index"
               @click="fiveChangeColor(item)">{{item}}</p>
@@ -48,8 +48,8 @@
       </div>
     </div>
     <div class="btnDiv">
-      <button class="out">取消</button>
-      <button class="go">确定</button>
+      <button class="out" @click="blackFn()">取消</button>
+      <button class="go" @click="goFn()">确定</button>
     </div>
     <mt-popup v-model="iptOneTrue" position="bottom">
       <mt-picker style="width: 100vw;" :slots="shengData" @change="onValuesChange1"></mt-picker>
@@ -77,6 +77,7 @@
         iptThreeTrue: false,
         oneIndex: 0,
         twoIndex: 0,
+        detailsR: '',
         shengData: [{
           values: []
         }],
@@ -88,19 +89,27 @@
         }],
         s1: '北京',
         s2: '北京市',
-        s3: '昌平区'
+        s3: '昌平区',
+        sexNum: 0,
+        nowName: '',
+        telPhone: '',
+        nowId: null
       }
     },
     methods: {
       goBack() {
-        this.$router.go(-1)
+        this.$router.push({
+          path:'/myAddress'
+        })
       },
       chengColor(a) {
         console.log(a);
         if (a == 1) {
           this.greenFont = '先生'
+          this.sexNum = 0
         } else {
           this.greenFont = "女士"
+          this.sexNum = 1
         }
         console.log(this.greenFont);
       },
@@ -159,6 +168,45 @@
       },
       iptThree() {
         this.iptThreeTrue = true
+      },
+      blackFn() {
+        this.$router.push({
+          path: '/myAddress'
+        })
+      },
+      goFn() {
+        if (this.nowId == false) {
+          this.axios.post(localStorage.url + 'address', {
+            name: this.nowName,
+            pone: this.telPhone,
+            ress1: this.s1,
+            ress2: this.s2,
+            ress3: this.s3,
+            ress4: this.detailsR,
+            sex: this.sexNum,
+            res: this.fiveColor
+          }).then((req) => {
+            console.log(req);
+          })
+        } else {
+          this.axios.post(localStorage.url + 'setress', {
+            id: this.nowId,
+            name: this.nowName,
+            pone: this.telPhone,
+            ress1: this.s1,
+            ress2: this.s2,
+            ress3: this.s3,
+            ress4: this.detailsR,
+            sex: this.sexNum,
+            res: this.fiveColor
+          }).then((req) => {
+            console.log(req);
+          })
+          
+        }
+        this.$router.push({
+          path: '/myAddress'
+        })
       }
     },
     created() {
@@ -168,6 +216,28 @@
         this.shengData[0].values.push(item.name)
       })
       console.log(this.shengData)
+      console.log(this.$route.query.item);
+      var item = this.$route.query.item
+      if (item) {
+        this.nowId = item.id
+        this.nowName = item.name
+        this.telPhone = item.pone
+        this.s1 = item.ress1
+        this.s2 = item.ress2
+        this.s3 = item.ress3
+        this.detailsR = item.ress4
+        this.fiveColor = item.res
+        this.sexNum = item.sex
+        if (item.sex == 0) {
+          this.greenFont = '先生'
+        } else {
+          this.greenFont = '女士'
+        }
+      } else {
+        this.nowId = false
+        return
+      }
+      console.log(this.nowId);
     }
   }
 </script>

@@ -39,7 +39,9 @@
     },
     methods: {
       goBack() {
-        this.$router.go(-1)
+        this.$router.push({
+          path:'/my'
+        })
       },
       gotoPage(item){
         if(item.path == 1){
