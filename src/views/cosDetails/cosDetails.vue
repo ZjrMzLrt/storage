@@ -10,12 +10,12 @@
 		<h3>{{name}}</h3>
 		<p>开课：随到随学</p>
 		<div class="price">
-			<p>￥0.00</p>
-			<del>原件：￥0.00</del>
+			<p>{{exper.price}}</p>
+			<del>原件：{{exper.oldprice}}</del>
 		</div>
 		<div class="pop">
 			<img src="/static/img/首页/pop.png" alt="">
-			<span>1人报名</span>
+			<span>{{exper.people}}</span>
 		</div>
 		
 		<div class="jianjie">
@@ -28,7 +28,7 @@
 				<p>本课程到校</p>
 				<p>可以先体验</p>
 			</div>
-			<p>课时：1课时</p>
+			<p>课时：{{exper.time}}</p>
 			<p>课表：暂无课表</p>
 			<div class="list">
 				<p>课程亮点</p>
@@ -120,14 +120,15 @@
 	import { MessageBox,Toast,Popup } from 'mint-ui';
 	export default{
 		mounted(){
-			this.name = this.$route.query.name;
+			
 		},
 		data(){
 			return{
 				name: '',
 				popupVisible: false,
 				user: '',
-				pone: ''
+				pone: '',
+				exper:{}
 			}
 		},
 		methods: {
@@ -154,6 +155,20 @@
 					path: '/sing'
 				})
 			}
+		},
+		mounted(){
+			this.name = this.$route.query.name;
+			this.axios.post("http://192.168.43.209:8800/getcourse").then((res)=>{
+				console.log(res.data.exper)
+				for (let i = 0; i < res.data.exper.length; i++) {
+					if (this.name==res.data.exper[i].title) {
+						console.log(res.data.exper[i])
+						this.exper=res.data.exper[i]
+					}
+					
+				}
+				
+			})
 		}
 	}
 </script>

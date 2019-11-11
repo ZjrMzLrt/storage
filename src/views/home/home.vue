@@ -16,8 +16,8 @@
           <!-- 轮播图结束 -->
           <div class="call">
             <div class="call_left">
-              <p>蔚蓝云朵艺术学校（富田校区）</p>
-              <p>郑州市管城回族区灵隐路1号映月社区B1层</p>
+              <p>{{addTop}}</p>
+              <p>{{addBot}}</p>
             </div>
             <div class="call_right">
               <div>
@@ -136,22 +136,9 @@
           '钢琴',
           '舞蹈'
         ],
-        bannerList: [{
-            picUrl: 'static/img/首页/1_26.png'
-          },
-          {
-            picUrl: 'static/img/首页/1_26.png'
-          },
-          {
-            picUrl: 'static/img/首页/1_26.png'
-          },
-          {
-            picUrl: 'static/img/首页/1_26.png'
-          },
-          {
-            picUrl: 'static/img/首页/1_26.png'
-          }
-        ]
+        bannerList: [],
+        addTop:'',
+        addBot:''
       }
     },
     methods: {
@@ -192,6 +179,18 @@
     },
     components: {
       audition
+    },
+    mounted(){
+      this.axios.post("http://192.168.43.209:8800/index").then((res)=>{
+        var a=[]
+        for (let i = 0; i < res.data.banner.length; i++) {
+          console.log(res.data.banner[i])
+          a.push({picUrl:res.data.banner[i]})
+        }
+        this.bannerList=a
+        this.addTop=res.data.address.top
+        this.addBot=res.data.address.bottom
+      })
     }
   }
 </script>

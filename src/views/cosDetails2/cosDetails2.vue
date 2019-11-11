@@ -7,16 +7,16 @@
 		<div class="pic">
 			<img src="/static/img/首页/精品课程/课程详情/1_5_02.jpg" alt="">
 		</div>
-		<h3>66元体验舞蹈、美术课程一个月了......欢迎您的加入！</h3>
-		<p>时长：45分钟</p>
+		<h3>{{dataa.title}}</h3>
+		<p>时长：{{dataa.time}}分钟</p>
 		<p>开课：随到随学</p>
 		<div class="price">
-			<p>￥0.00</p>
-			<del>原件：￥0.00</del>
+			<p>￥{{dataa.price}}</p>
+			<del>原件：￥{{dataa.oldprice}}</del>
 		</div>
 		<div class="pop">
 			<img src="" alt="">
-			<span>45人报名</span>
+			<span>{{dataa.people}}人报名</span>
 		</div>
 		
 		<div class="jianjie">
@@ -74,10 +74,32 @@
 </template>
 <script>
 	export default{
+		data(){
+			return{
+				dataa:{}
+			}
+			
+		},
 		methods: {
 			gonext(){
 				this.$router.go(-1)
 			}
+		},
+		mounted(){
+			console.log(this.$route.query.id)
+
+			this.axios.post("http://192.168.43.209:8800/getexper").then((res)=>{
+				// console.log(res.data.data)
+				for (let i = 0; i < res.data.data.length; i++) {
+					if (this.$route.query.id== res.data.data[i].id) {
+						console.log(res.data.data[i])
+						this.dataa=res.data.data[i]
+					}
+					
+				}
+
+			})
+			
 		}
 	}
 </script>

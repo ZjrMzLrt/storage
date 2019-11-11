@@ -6,10 +6,10 @@
 		<div class='none' v-if='!getArr().length'>
 			暂时没有精品课程数据
 		</div>
-		<audition v-for='item,index in getArr()' :key='index' :name='item.txt' v-if='getArr().length'></audition>
+		<audition v-for='(item,index) in getArr()' :key='index' :name='item.title' v-if='getArr().length'></audition>
 		<h3 style="margin-top:20px;" v-if='obj.id'>其他课程</h3>
 		<div>
-			<audition v-for='item,index in getArr2()' :key='index' :name='item.txt' v-if='getArr2().length'></audition>
+			<audition v-for='(item,index) in getArr2()' :key='index' :name='item.title' v-if='getArr2().length'></audition>
 		</div>
 		</div></div>
 	</div>
@@ -25,41 +25,31 @@
 			return{
 				arr: [],
 				arr2: [],
-				dataList: [{
-						txt: '声乐',
-						id: 1
-					},{
-						txt: '钢琴',
-						id: 1
-					},{
-						txt: '舞蹈',
-						id: 1
-					}
-				]
+				dataList: []
 			}
 		},
 		created() {
-        this.$nextTick(() => {
-        //$refs绑定元素
-            if(!this.scroll){
-                this.scroll = new BScroll(this.$refs.wrapper, {
-                //开启点击事件 默认为false
-                click:true
-            })
-            // console.log(this.scroll)
-            }else if(!this.$refs.wrapper){
-                return
-            }
-            else{
-                this.scroll.refresh()
-            }
-        })
-    },
+			this.$nextTick(() => {
+			//$refs绑定元素
+				if(!this.scroll){
+					this.scroll = new BScroll(this.$refs.wrapper, {
+					//开启点击事件 默认为false
+					click:true
+				})
+				// console.log(this.scroll)
+				}else if(!this.$refs.wrapper){
+					return
+				}
+				else{
+					this.scroll.refresh()
+				}
+			})
+		},
 		methods: {
 			getArr(){
 				if(this.obj.id){
 					return this.dataList.filter(item => {
-						return item.txt == this.obj.txt;
+						return item.title == this.obj.txt;
 					})
 				}else{
 					return this.dataList;
@@ -68,13 +58,16 @@
 			getArr2(){
 				if(this.obj.id){
 					return this.dataList.filter(item => {
-						return item.txt != this.obj.txt;
+						return item.title != this.obj.txt;
 					})
 				}
 			}
 		},
 		mounted(){
-
+			this.axios.post("http://192.168.43.209:8800/getcourse").then((res)=>{
+				console.log(res.data.exper)
+				this.dataList=res.data.exper
+			})
 		},
 		components: {
 			audition

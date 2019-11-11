@@ -1,13 +1,13 @@
 <template>
     <div>
         <ul id="tasteOfList">
-            <li>
+            <li v-for="(item,index) in tasteData" :key="index" @click="godetails(item.id)">
                 <div class="liD1">
-                    <p class="ofhP">66元体验舞蹈课、美术课yesyesyesyes</p>
-                    <p class="taste-price">￥66.00</p>
+                    <p class="ofhP">{{item.title}}</p>
+                    <p class="taste-price">￥{{item.price}}</p>
                 </div>
                 <div>
-                    <p class="taste-peo">-5人已报名</p>
+                    <p class="taste-peo">{{item.people}}人已报名</p>
                     <p class="taste-btn">报名体验</p>
                 </div>
             </li>
@@ -17,7 +17,28 @@
 
 <script>
 export default{
-    name:'TasteOfCom'
+    name:'TasteOfCom',
+    data(){
+        return {
+            tasteData:[]
+        }
+    },
+    methods:{
+        godetails(id) {
+            this.$router.push({
+                path: '/cosDetails2',
+                query:{
+                    id
+                }
+            })
+        }
+    },
+    mounted(){
+        this.axios.post("http://192.168.43.209:8800/getexper").then((res)=>{
+            console.log(res.data.data)
+            this.tasteData=res.data.data
+        })
+    }
 }
 </script>
 

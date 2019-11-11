@@ -12,6 +12,12 @@ import 'mint-ui/lib/style.css'
  
  Vue.component('zScroll',zScroll)
 
+ //axios
+// 引入axios
+// 挂载到vue原型链上
+Vue.prototype.axios = axios
+//axios
+
 Vue.use(mintUi)
 Vue.config.productionTip = false
 

@@ -14,11 +14,11 @@
         <div class="everyAddressTop">
           <div class="eatTop">
             <p class="name">{{item.name}}</p>
-            <p class="sex">{{item.sex}}</p>
-            <p class="phone">{{item.phone}}</p>
-            <p class="address">{{item.address}}</p>
+            <!-- <p class="sex">{{item.sex}}</p> -->
+            <p class="phone">{{item.pone}}</p>
+            <p class="address">{{item.res}}</p>
           </div>
-          <div class="eatBottom">{{item.detailsAddress}}</div>
+          <div class="eatBottom">{{item.ress}}</div>
         </div>
         <div class="everyAddressBottom">
           <div class="ofj">
@@ -54,6 +54,10 @@
       }
     },
     mounted() {
+		this.axios.post("http://192.168.43.209:8800/getress").then((res)=>{
+			console.log(res.data.ress)
+			this.myAddressData=res.data.ress
+		})
       if (this.myAddressData[0]) {
         this.showFlag = true
       } else {

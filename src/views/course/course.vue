@@ -6,7 +6,7 @@
 		</div>
 		<div class="body">
 			<ul>
-				<li v-for='item,index in routerList' :key='index' :class='{on: curIndex == index}' @click='tab(index,item)'>{{item.txt}}</li>
+				<li v-for='(item,index) in routerList' :key='index' :class='{on: curIndex == index}' @click='tab(index,item)'>{{item.txt}}</li>
 			</ul>
 			<ification :obj='obj'></ification>
 		</div>
@@ -40,24 +40,7 @@
 					}
 				]
 				},
-				routerList: [
-					{
-						txt: '全部',
-						id: 0
-					},{
-						txt: '声乐',
-						id: 1
-					},{
-						txt: '钢琴',
-						id: 1
-					},{
-						txt: '舞蹈',
-						id: 1
-					},{
-						txt: '美术',
-						id: 1
-					}
-				]
+				routerList: []
 			}
 		},
 		methods: {
@@ -71,6 +54,12 @@
 		},
 		components: {
 			ification
+		},
+		mounted(){
+			this.axios.post("http://192.168.43.209:8800/getcourse").then((res)=>{
+				console.log(res.data)
+				this.routerList=res.data.experbtn
+			})
 		}
 	}
 </script>
