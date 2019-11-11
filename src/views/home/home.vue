@@ -99,20 +99,19 @@
             </div>
           </div>
         </div>
-        <mt-popup v-model="popupVisible" position="bottom">
-          <div class="box">
-            <p>预约信息</p>
-            <div class="inp">
-              <input type="text" placeholder="请填写姓名" v-model.trim='user'>
-              <input type="text" placeholder="请填写手机号" v-model.trim='pone'>
-              <p class='btn' @click='go'>预约试听</p>
-            </div>
-          </div>
-        </mt-popup>
         <div style="height:10vh;width:100vw;"></div>
       </div>
-      
     </zScroll>
+	<mt-popup v-model="popupVisible" position="bottom">
+	  <div class="box">
+	    <p>预约信息</p>
+	    <div class="inp">
+	      <input type="text" placeholder="请填写姓名" v-model.trim='user'>
+	      <input type="text" placeholder="请填写手机号" v-model.trim='pone'>
+	      <p class='btn' @click='go'>预约试听</p>
+	    </div>
+	  </div>
+	</mt-popup>
   </div>
 </template>
 
